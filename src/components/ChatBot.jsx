@@ -69,7 +69,8 @@ const ChatBot = () => {
           const waitTime = Math.pow(2, retryCount) * 1000; // Exponential backoff
           console.log(`Rate limit exceeded. Retrying in ${waitTime}ms (attempt ${retryCount}/${maxRetries})`);
           await new Promise(resolve => setTimeout(resolve, waitTime));
-        } else {
+      
+          
           console.error("Chat error:", error);
           toast({
             title: "Error",
@@ -195,9 +196,6 @@ const ChatBot = () => {
                   <Send className="h-4 w-4" />
                 </Button>
               </div>
-              <p className="text-xs text-gray-500 mt-2 text-center">
-                Powered by Gemini AI
-              </p>
             </div>
           </motion.div>
         )}
