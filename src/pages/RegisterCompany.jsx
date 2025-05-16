@@ -463,7 +463,7 @@ const RegisterCompany = () => {
                       <FormControl>
                         <div className="relative">
                           <Building className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                          <Input {...field} placeholder="New York" className="pl-10" />
+                          <Input {...field} placeholder="Bamenda" className="pl-10" />
                         </div>
                       </FormControl>
                       <FormMessage />

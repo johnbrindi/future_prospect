@@ -42,7 +42,7 @@ const CompanyDashboard = () => {
   const renderActiveSection = () => {
     switch (activeSection) {
       case "profile":
-        return <ProfileEditor onClose={() => {}} />;
+        // return <ProfileEditor onClose={() => {}} />;
       case "internships":
         return <InternshipManager />;
       case "applications":
