@@ -74,7 +74,7 @@ const Navbar = () => {
             <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <div className="py-2 px-3">
                 <Link
-                  to="/company-login"
+                  to="login"
                   className="block py-2 text-gray-700 hover:text-primary transition-colors"
                 >
                   Company Login
