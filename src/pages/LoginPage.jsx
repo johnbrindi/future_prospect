@@ -210,7 +210,7 @@ const LoginPage = () => {
             <div className="flex flex-col items-center text-sm">
               <p className="text-gray-500">
                 Don't have an account?{" "}
-                <Link to="/" className="text-primary font-medium hover:underline">
+                <Link to="/student-register" className="text-primary font-medium hover:underline">
                   Sign up
                 </Link>
               </p>
