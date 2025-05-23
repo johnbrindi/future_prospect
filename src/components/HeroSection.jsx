@@ -40,8 +40,8 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              FutureProspect helps University of Bamenda students find and
-              connect with local companies offering internships in their field of
+              FutureProspect helps University students find and
+              connect with local companies offering internships opportunities in their field of
               study.
             </motion.p>
             
