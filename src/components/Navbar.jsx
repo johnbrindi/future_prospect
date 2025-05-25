@@ -52,7 +52,7 @@ const Navbar = () => {
             <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <div className="py-2 px-3">
                 <Link
-                  to="/login"
+                  to="/student-login"
                   className="block py-2 text-gray-700 hover:text-primary transition-colors"
                 >
                   Student Login
@@ -63,7 +63,12 @@ const Navbar = () => {
                 >
                   Student Register
                 </Link>
-                
+                <Link
+                  to="/internships"
+                  className="block py-2 text-gray-700 hover:text-primary transition-colors"
+                >
+                  Browse Internships
+                </Link>
               </div>
             </div>
           </div>
@@ -74,7 +79,7 @@ const Navbar = () => {
             <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <div className="py-2 px-3">
                 <Link
-                  to="login"
+                  to="/company-login"
                   className="block py-2 text-gray-700 hover:text-primary transition-colors"
                 >
                   Company Login
@@ -85,7 +90,12 @@ const Navbar = () => {
                 >
                   Company Register
                 </Link>
-                
+                <Link
+                  to="/post-internship"
+                  className="block py-2 text-gray-700 hover:text-primary transition-colors"
+                >
+                  Post Internship
+                </Link>
               </div>
             </div>
           </div>
@@ -138,7 +148,7 @@ const Navbar = () => {
                 Home
               </Link>
               <Link
-                to="/login"
+                to="/student-login"
                 className="py-2 text-gray-700 hover:text-primary transition-colors font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >

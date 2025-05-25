@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -11,14 +11,13 @@ import {
   BookOpen,
   Award,
   User,
-  LogOut,
   Menu,
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import ProfileEditor from "@/components/ProfileEditor";
+import CompanyProfileEditor from "@/components/CompanyProfileEditor";
 import { InternshipManager } from "@/components/InternshipManager";
 import { ApplicationManager } from "@/components/ApplicationManager";
 import { DirectMessaging } from "@/components/DirectMessaging";
@@ -26,37 +25,63 @@ import { PerformanceAnalytics } from "@/components/PerformanceAnalytics";
 import { FeedbackTools } from "@/components/FeedbackTools";
 import ResourceCenter from "@/components/ResourceCenter";
 import BrandingTools from "@/components/BrandingTools";
+import { getUserId } from "@/services/userService";
+import { getCompanyByUserId } from "@/services/companyService";
 
 const CompanyDashboard = () => {
-  const [activeSection, setActiveSection] = useState("profile");
+  const [activeSection, setActiveSection] = useState("internships");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [companyData, setCompanyData] = useState('')
+  const [avatar, setAvatar] = useState(null)
+
+  useEffect(() => {
+    const getCompany = async () => {
+      console.log('ok')
+      const id = await getUserId()
+      const data = await getCompanyByUserId(id)
+
+      setCompanyData(data)
+      let avatar = data.name.split(' ')
+      avatar = avatar[0][0]?.toUpperCase() || '' + avatar[1][0]?.toUpperCase() || ''
+      setAvatar(avatar)
+      console.log('company is ' ,data)
+    } 
+
+
+    getCompany()
+
+  }, [])
+
+ 
+
+
   
-  const companyData = {
-    name: "TechCorp Solutions",
-    logo: "",
-    industry: "Information Technology",
-    location: "Bamenda, Cameroon",
-    about: "Leading provider of innovative technology solutions with a focus on providing quality internships."
-  };
+  // const companyData = {
+  //   name: "TechCorp Solutions",
+  //   avatar: "",
+  //   industry: "Information Technology",
+  //   location: "Bamenda, Cameroon",
+  //   about: "Leading provider of innovative technology solutions with a focus on providing quality internships."
+  // };
 
   const renderActiveSection = () => {
     switch (activeSection) {
       case "profile":
-        // return <ProfileEditor onClose={() => {}} />;
+        return <CompanyProfileEditor setActive = {setActiveSection} companyData = {companyData}/>;
       case "internships":
-        return <InternshipManager />;
+        return <InternshipManager setActiveSection = {setActiveSection} />;
       case "applications":
-        return <ApplicationManager />;
+        return <ApplicationManager setActiveSection = {setActiveSection} />;
       case "messaging":
-        return <DirectMessaging />;
+        return <DirectMessaging setActiveSection = {setActiveSection} />;
       case "analytics":
-        return <PerformanceAnalytics />;
+        return <PerformanceAnalytics setActiveSection = {setActiveSection} />;
       case "feedback":
-        return <FeedbackTools />;
+        return <FeedbackTools setActiveSection = {setActiveSection} />;
       case "resources":
-        return <ResourceCenter />;
+        return <ResourceCenter setActiveSection = {setActiveSection} />;
       case "branding":
-        return <BrandingTools />;
+        return <BrandingTools setActiveSection = {setActiveSection} />;
       default:
         return null;
     }
@@ -73,6 +98,8 @@ const CompanyDashboard = () => {
     { id: "branding", label: "Branding Opportunities", icon: Award },
   ];
 
+  
+
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar - Desktop */}
@@ -87,10 +114,11 @@ const CompanyDashboard = () => {
             <div className="flex items-center gap-3 mb-2">
               <Avatar className="h-10 w-10">
                 <AvatarFallback className="bg-primary text-primary-foreground">
-                  TS
+                  {avatar}
                 </AvatarFallback>
               </Avatar>
               <div>
+                {console.log(companyData)}
                 <p className="font-medium text-sm">{companyData.name}</p>
                 <p className="text-xs text-gray-500">{companyData.industry}</p>
               </div>
@@ -120,7 +148,7 @@ const CompanyDashboard = () => {
         <div className="p-4 border-t border-gray-200">
           <Button variant="outline" className="w-full justify-start" asChild>
             <Link to="/">
-              <LogOut className="mr-2 h-4 w-4" />
+              <avatarut className="mr-2 h-4 w-4" />
               Log Out
             </Link>
           </Button>
@@ -190,7 +218,7 @@ const CompanyDashboard = () => {
             <div className="p-4 border-t border-gray-200">
               <Button variant="outline" className="w-full justify-start" asChild>
                 <Link to="/">
-                  <LogOut className="mr-2 h-4 w-4" />
+                  <avatarut className="mr-2 h-4 w-4" />
                   Log Out
                 </Link>
               </Button>
